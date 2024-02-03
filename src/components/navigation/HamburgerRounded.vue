@@ -1,7 +1,7 @@
 <template>
   <div
     @click="() => navigationStore.toggle()"
-    class="container absolute top-0 cursor-pointer flex items-center justify-center z-30"
+    class="container absolute cursor-pointer flex items-center justify-center z-30 right-5 top-5"
   >
     <div class="absolute w-[50px] h-[50px] bg-blue-300 rounded-full" />
     <svg

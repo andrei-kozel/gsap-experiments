@@ -2,20 +2,6 @@
   <div class="bg-red-600">carousel 12</div>
 </template>
 
-<script lang="ts">
-import { reactive, toRefs } from 'vue'
-
-export default {
-  setup() {
-    const state = reactive({
-      count: 0
-    })
-
-    return {
-      ...toRefs(state)
-    }
-  }
-}
-</script>
+<script setup lang="ts"></script>
 
 <style lang="scss" scoped></style>

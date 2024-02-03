@@ -1,5 +1,5 @@
 <template>
-  <HamburgerRounded class="right-10 top-10" />
+  <HamburgerRounded />
   <FullscreenMenu />
 </template>
 
