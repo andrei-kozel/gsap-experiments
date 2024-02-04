@@ -1,5 +1,5 @@
 <template>
-  <div class="h-full bg-green-300 cursor-pointer">
+  <div>
     <img class="object-cover h-full" :src="image" alt="Random" />
   </div>
 </template>
@@ -10,4 +10,4 @@ defineProps<{
 }>()
 </script>
 
-<style scoped></style>
+<style scoped lang="scss"></style>
