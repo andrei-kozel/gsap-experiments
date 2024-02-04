@@ -1,22 +1,27 @@
 <template>
-  <div class="w-screen h-screen absolute grid grid-cols-4 grid-rows-2">
-    <router-link
-      v-for="index in 8"
-      @click="handleClick"
-      :key="navigationStore.getMenuItem(index - 1).name"
-      :to="navigationStore.getMenuItem(index - 1).path"
-      :class="navigationStore.getMenuItem(index - 1).color"
-      class="link flex justify-center items-center w-full"
+  <Transition @enter="showMenu" @leave="hideMenu" leave-active-class="transition duration-500">
+    <div
+      class="w-screen h-screen absolute grid grid-cols-4 grid-rows-2"
+      v-show="navigationStore.isOpened"
     >
-      {{ navigationStore.getMenuItem(index - 1).name }}
-    </router-link>
-  </div>
+      <router-link
+        v-for="index in 8"
+        @click="handleClick"
+        :key="navigationStore.getMenuItem(index - 1).name"
+        :to="navigationStore.getMenuItem(index - 1).path"
+        :class="navigationStore.getMenuItem(index - 1).color"
+        class="link flex justify-center items-center w-full"
+      >
+        {{ navigationStore.getMenuItem(index - 1).name }}
+      </router-link>
+    </div>
+  </Transition>
 </template>
 
 <script setup lang="ts">
 import gsap from 'gsap'
 import { useNavigationStore } from '@/stores/navigation'
-import { onMounted, ref, watch } from 'vue'
+import { onMounted, ref } from 'vue'
 
 const navigationStore = useNavigationStore()
 const links = ref<NodeListOf<Element> | null>(null)
@@ -25,13 +30,6 @@ onMounted(() => {
   links.value = document.querySelectorAll('.link')
   gsap.set(links.value, { autoAlpha: 0, scale: 0.5 })
 })
-
-watch(
-  () => navigationStore.isOpened,
-  () => {
-    navigationStore.isOpened ? showMenu() : hideMenu()
-  }
-)
 
 const showMenu = () => {
   gsap.to(links.value, {
@@ -57,3 +55,5 @@ const handleClick = () => {
   navigationStore.toggle()
 }
 </script>
+
+<style lang="scss" scoped></style>
